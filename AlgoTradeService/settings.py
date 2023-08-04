@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8wrw@+*$6@-834bw2lb37tujrqmp)%_=lcm#w#yb$v7dldgw1='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,7 +141,7 @@ DATABASES = {
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'backend.utils.pagination.CustomPagination',
     'PAGE_SIZE': PAGE_SIZE,
-    "EXCEPTION_HANDLER": ("backend.utils.exceptions.base_exception_handler"),
+    # "EXCEPTION_HANDLER": ("backend.utils.exceptions.base_exception_handler"),
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
      ]
