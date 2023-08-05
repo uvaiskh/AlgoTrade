@@ -2,7 +2,6 @@
 from rest_framework import generics, status
 from rest_framework.response import Response
 import requests
-import pandas as pd
 from backend.models import *
 from backend.serializers import *
 import datetime
@@ -13,25 +12,24 @@ class TestView(generics.ListAPIView):
     def list(self, request, *args, **kwargs):
         return Response({"status": True, "message": "Success", "data": {"Test paased"}}, status=status.HTTP_201_CREATED)
     
-def add_scripts_to_db():
-    url = 'https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json'
-    try:
-        data = requests.get(url).json()
-    except Exception as err:
-        data = list()
-    df = pd.DataFrame(data)
-    data = df[df['exch_seg'].isin(['NFO'])].to_dict('records')
-    # Scripts.objects.all().delete()
-    count = 1
-    print(len(data))
-    while data:
-        new_data = data[:100]
-        serializer = ScriptSerializer(data=new_data, many=True)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        data = data[100:]
-        print(count)
-        count+=1
+# def add_scripts_to_db():
+#     url = 'https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json'
+#     try:
+#         data = requests.get(url).json()
+#     except Exception as err:
+#         data = list()
+#     df = pd.DataFrame(data)
+#     data = df[df['exch_seg'].isin(['NFO', 'BSE', 'NSE'])].to_dict('records')
+#     Scripts.objects.all().delete()
+#     count = 1
+#     while data:
+#         new_data = data[:100]
+#         serializer = ScriptSerializer(data=new_data, many=True)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         data = data[100:]
+#         print(count)
+#         count+=1
 
 class TokenView(generics.ListAPIView):
     queryset = Scripts.objects.all()
