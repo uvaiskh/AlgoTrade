@@ -20,3 +20,7 @@ REFRESH_TOKEN_SECRET = os.getenv('REFRESH_TOKEN_SECRET')
 
 HOSTS_ALLOWED = json.loads(os.getenv('ALLOWED_HOSTS'))
 
+ANGEL_TOTP = os.getenv('ANGEL_TOTP')
+ANGEL_API_KEY = os.getenv('ANGEL_API_KEY')
+ANGLE_CLIENT_ID = os.getenv('ANGLE_CLIENT_ID')
+ANGEL_PIN = os.getenv('ANGEL_PIN')
