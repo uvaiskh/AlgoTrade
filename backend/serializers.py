@@ -14,4 +14,14 @@ class ScriptSerializer(serializers.ModelSerializer):
         if "instrumenttype" not in self.fields:
             self.fields['instrumenttype'] = None
 
+class PlaceOrderSerializer(serializers.Serializer):
+    exchange = serializers.CharField() # BSE, NSE NFO MCX
+    transactiontype = serializers.CharField() # BUY SELL
+    ordertype = serializers.CharField() # MARKET LIMIT STOPLOSS_LIMIT STOPLOSS_MARKET
+    lot = serializers.IntegerField()
+    producttype = serializers.CharField() # DELIVERY CARRYFORWARD MARGIN INTRADAY BO
+    script = serializers.DictField()
+    # variety = serializers.CharField() # NORMAL STOPLOSS AMO ROBO
+    # Duration = serializers.CharField() # DAY IOC
+    
 

@@ -23,7 +23,7 @@ class AuthMiddleware(MiddlewareMixin):
     def process_request(self, request):
 
         request.Language = request.headers.get('Accept-Language', 'en')
-        exclusion_list = [UrlNames.Login, UrlNames.Test, UrlNames.Tokens]
+        exclusion_list = [UrlNames.Login, UrlNames.Test, UrlNames.Tokens, UrlNames.Orders]
         try:
             url_obj = resolve(request.path)
             url_name = url_obj.url_name
